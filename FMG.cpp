@@ -660,6 +660,9 @@ void ReadCfgFile(void)
     fclose(CfgFile);
 }
 
+//MG1
+
+
 int max95 = 50;
 int max90 = 50;
 int max85 = 40;
@@ -679,6 +682,29 @@ int SETTING_AUTOCONTROL_CYCLE = 20;
 int SETTING_SUDDENRAISE_Counter_CYCLE = 2;
 int lastCPUTemp = 0;
 short autoIndex = SETTING_AUTOCONTROL_CYCLE;
+
+int f2max95 = 50;
+int f2max90 = 50;
+int f2max85 = 40;
+int f2max80 = 40;
+int f2max75 = 30;
+int f2max70 = 30;
+int f2max65 = 25;
+int f2max60 = 20;
+int f2max55 = 19;
+int f2max50 = 19;
+int f2max45 = 15;
+int f2max40 = 10;
+int f2max35 = 0;
+int f2max00 = 0;
+int f2SETTING_AUTOCONTROL_TEMPDIFFERENT = 10;
+int f2SETTING_AUTOCONTROL_CYCLE = 20;
+int f2SETTING_SUDDENRAISE_Counter_CYCLE = 2;
+int f2lastCPUTemp = 0;
+short f2autoIndex = f2SETTING_AUTOCONTROL_CYCLE;
+
+int mgf1id = 6;
+int mgf2id = 6;
 
 void ReadSettingFile(void)
 {
@@ -704,6 +730,21 @@ void ReadSettingFile(void)
         //printf("%s", StrLine);
 
         pStrLine = StrLine;
+        if (('$' == StrLine[0]) && (('9' == StrLine[1])))
+        {
+            if ('A' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                mgf1id = atoi(pStrLine);
+            }
+            else  if ('B' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                mgf2id = atoi(pStrLine);
+            }
+        }
+
+
         if (('$' == StrLine[0]) && (('0' == StrLine[1])))
         {
             
@@ -741,7 +782,7 @@ void ReadSettingFile(void)
             {
                 while (('#' != (*pStrLine++)));
                 max80 = atoi(pStrLine);
-        }
+            }
             else  if ('4' == StrLine[3])
             {
                 while (('#' != (*pStrLine++)));
@@ -794,6 +835,98 @@ void ReadSettingFile(void)
             }
              
         }
+
+
+        if (('$' == StrLine[0]) && (('2' == StrLine[1])))
+        {
+
+            if ('X' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2SETTING_AUTOCONTROL_CYCLE = atoi(pStrLine);
+            }
+            else  if ('Y' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2SETTING_SUDDENRAISE_Counter_CYCLE = atoi(pStrLine);
+            }
+            else if ('Z' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2SETTING_AUTOCONTROL_TEMPDIFFERENT = atoi(pStrLine);
+            }
+            else if ('0' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max95 = atoi(pStrLine);
+            }
+            else  if ('1' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max90 = atoi(pStrLine);
+            }
+            else  if ('2' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max85 = atoi(pStrLine);
+            }
+            else  if ('3' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max80 = atoi(pStrLine);
+            }
+            else  if ('4' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max75 = atoi(pStrLine);
+            }
+            else  if ('5' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max70 = atoi(pStrLine);
+            }
+            else  if ('6' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max65 = atoi(pStrLine);
+            }
+            else  if ('7' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max60 = atoi(pStrLine);
+            }
+            else  if ('8' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max55 = atoi(pStrLine);
+            }
+            else  if ('9' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max50 = atoi(pStrLine);
+            }
+            else  if ('A' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max45 = atoi(pStrLine);
+            }
+            else  if ('B' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max40 = atoi(pStrLine);
+            }
+            else  if ('C' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max35 = atoi(pStrLine);
+            }
+            else  if ('D' == StrLine[3])
+            {
+                while (('#' != (*pStrLine++)));
+                f2max00 = atoi(pStrLine);
+            }
+
+        }
     }
 #if 0
     printf("\n\n\n");
@@ -837,7 +970,7 @@ void ToolInit(void)
 
     SetTextColor(EFI_YELLOW, EFI_BLACK);
     //printf("Up/Down For Fan1 Speed Control, W/S For Fan2 Speed Control\n");
-    printf("markgoo modified version(V8)\n");
+    printf("markgoo modified version(V10 TEST)\n");
     SetTextColor(EFI_LIGHTMAGENTA, EFI_BLACK);
     printf("<ESC> to exit!");
     SetTextColor(EFI_LIGHTGREEN, EFI_BLACK);
@@ -1118,7 +1251,7 @@ void PollFanInfo(void)
 void Key_Manage()
 {
     unsigned char temp8Bit;
-
+    /*
     if (KEY_UP == Key_Value)
     {
         if (BAT1_Info[FAN1_Set_RPM].InfoInt < 200)
@@ -1182,19 +1315,24 @@ void Key_Manage()
         //temp8Bit = EC_RAM_READ(0xB20);
         //temp8Bit = temp8Bit|0x08;
         //EC_RAM_WRITE(0xB20,temp8Bit);
-    }
+    }*/
 }
 
 
+
+//mg2
 int raiseCounter = 0;
 
 int SETTING_AUTOCONTROL_CURRENTSPEED = 1;
+
+
 
 int autoControl(short iIndex, int lastTemp)
 {
     bool doCheck = false; 
 
-    if (lastTemp!=0 && (BAT1_Info[Temp_Sensor6].InfoInt - lastTemp > SETTING_AUTOCONTROL_TEMPDIFFERENT || lastTemp - BAT1_Info[Temp_Sensor6].InfoInt > SETTING_AUTOCONTROL_TEMPDIFFERENT))
+    int currentTemp = BAT1_Info[mgf1id].InfoInt;
+    if (lastTemp!=0 && (currentTemp - lastTemp > SETTING_AUTOCONTROL_TEMPDIFFERENT || lastTemp - currentTemp > SETTING_AUTOCONTROL_TEMPDIFFERENT))
     {
         if (raiseCounter >= SETTING_SUDDENRAISE_Counter_CYCLE)
         {
@@ -1225,7 +1363,6 @@ int autoControl(short iIndex, int lastTemp)
     {
         int newSPEED = 0;
         raiseCounter = 0;
-        int currentTemp = BAT1_Info[Temp_Sensor6].InfoInt;
         if (currentTemp > 95)
         {
             newSPEED = max95; 
@@ -1286,12 +1423,13 @@ int autoControl(short iIndex, int lastTemp)
         if (newSPEED != SETTING_AUTOCONTROL_CURRENTSPEED)
         { 
             BAT1_Info[FAN1_Set_RPM].InfoInt = newSPEED;
-            BAT1_Info[FAN2_Set_RPM].InfoInt = newSPEED; 
-            sprintf(BAT1_Info[FAN2_Set_RPM].InfoValue, "%-8d ", 100 * BAT1_Info[FAN2_Set_RPM].InfoInt);
-            EC_RAM_WRITE(BAT1_Info[FAN2_Set_RPM].InfoAddr_L, BAT1_Info[FAN2_Set_RPM].InfoInt);
-
             sprintf(BAT1_Info[FAN1_Set_RPM].InfoValue, "%-8d ", 100 * BAT1_Info[FAN1_Set_RPM].InfoInt);
             EC_RAM_WRITE(BAT1_Info[FAN1_Set_RPM].InfoAddr_L, BAT1_Info[FAN1_Set_RPM].InfoInt);
+
+
+            /*BAT1_Info[FAN2_Set_RPM].InfoInt = newSPEED;
+            sprintf(BAT1_Info[FAN2_Set_RPM].InfoValue, "%-8d ", 100 * BAT1_Info[FAN2_Set_RPM].InfoInt);
+            EC_RAM_WRITE(BAT1_Info[FAN2_Set_RPM].InfoAddr_L, BAT1_Info[FAN2_Set_RPM].InfoInt);*/
 
             SETTING_AUTOCONTROL_CURRENTSPEED = newSPEED; 
         } 
@@ -1305,6 +1443,128 @@ int autoControl(short iIndex, int lastTemp)
     }
 }
 
+//mg3
+int f2raiseCounter = 0;
+
+int f2SETTING_AUTOCONTROL_CURRENTSPEED = 1;
+
+
+int autoControlf2(short f2iIndex, int f2lastTemp)
+{
+    bool f2doCheck = false;
+    int f2currentTemp = BAT1_Info[mgf2id].InfoInt;
+
+    if (f2lastTemp != 0 && (f2currentTemp - f2lastTemp > f2SETTING_AUTOCONTROL_TEMPDIFFERENT || f2lastTemp - f2currentTemp > f2SETTING_AUTOCONTROL_TEMPDIFFERENT))
+    {
+        if (f2raiseCounter >= f2SETTING_SUDDENRAISE_Counter_CYCLE)
+        {
+            f2doCheck = true;
+            f2raiseCounter = 0;
+        }
+        else
+        {
+            f2raiseCounter++;
+
+            if (f2iIndex == f2SETTING_AUTOCONTROL_CYCLE)
+            {
+                f2doCheck = true;
+                f2raiseCounter = 0;
+            }
+        }
+    }
+    else
+    {
+        if (f2iIndex == f2SETTING_AUTOCONTROL_CYCLE)
+        {
+            f2doCheck = true;
+            f2raiseCounter = 0;
+        }
+    }
+
+    if (f2doCheck == true)
+    {
+        int f2newSPEED = 0;
+        f2raiseCounter = 0; 
+        if (f2currentTemp > 95)
+        {
+            f2newSPEED = f2max95;
+        }
+        else if (f2currentTemp > 90)
+        {
+            f2newSPEED = f2max90;
+        }
+        else if (f2currentTemp > 85)
+        {
+            f2newSPEED = f2max85;
+        }
+        else if (f2currentTemp > 80)
+        {
+            f2newSPEED = f2max80;
+        }
+        else if (f2currentTemp > 75)
+        {
+            f2newSPEED = f2max75;
+        }
+        else if (f2currentTemp > 70)
+        {
+            f2newSPEED = f2max70;
+        }
+        else if (f2currentTemp > 65)
+        {
+            f2newSPEED = f2max65;
+        }
+        else if (f2currentTemp > 60)
+        {
+            f2newSPEED = f2max60;
+        }
+        else if (f2currentTemp > 55)
+        {
+            f2newSPEED = f2max55;
+        }
+        else if (f2currentTemp > 50)
+        {
+            f2newSPEED = f2max50;
+        }
+        else if (f2currentTemp > 45)
+        {
+            f2newSPEED = f2max45;
+        }
+        else if (f2currentTemp > 40)
+        {
+            f2newSPEED = f2max40;
+        }
+        else if (f2currentTemp > 35)
+        {
+            f2newSPEED = f2max35;
+        }
+        else
+        {
+            f2newSPEED = f2max00;
+        }
+
+        if (f2newSPEED != f2SETTING_AUTOCONTROL_CURRENTSPEED)
+        {
+            /*BAT1_Info[FAN1_Set_RPM].InfoInt = newSPEED;
+            sprintf(BAT1_Info[FAN1_Set_RPM].InfoValue, "%-8d ", 100 * BAT1_Info[FAN1_Set_RPM].InfoInt);
+            EC_RAM_WRITE(BAT1_Info[FAN1_Set_RPM].InfoAddr_L, BAT1_Info[FAN1_Set_RPM].InfoInt);*/
+
+
+            BAT1_Info[FAN2_Set_RPM].InfoInt = f2newSPEED;
+            sprintf(BAT1_Info[FAN2_Set_RPM].InfoValue, "%-8d ", 100 * BAT1_Info[FAN2_Set_RPM].InfoInt);
+            EC_RAM_WRITE(BAT1_Info[FAN2_Set_RPM].InfoAddr_L, BAT1_Info[FAN2_Set_RPM].InfoInt);
+
+
+            f2SETTING_AUTOCONTROL_CURRENTSPEED = f2newSPEED;
+        }
+
+
+        return f2currentTemp;
+    }
+    else
+    {
+        return f2lastTemp;
+    }
+}
 
 
 void display(void)
@@ -1326,13 +1586,24 @@ void display(void)
         {
             autoIndex++;
         }
+
+        f2lastCPUTemp = autoControlf2(f2autoIndex, f2lastCPUTemp);
+
+        if (f2autoIndex == f2SETTING_AUTOCONTROL_CYCLE)
+        {
+            f2autoIndex = 0;
+        }
+        else
+        {
+            f2autoIndex++;
+        }
         //Sleep(SetTime);
         _sleep(SetTime);   // millisecond
-       /* if (kbhit())
+        if (kbhit())
         {
             Key_Value = getch();
             Key_Manage();
-        }*/
+        }
     }
 }
 
@@ -1412,11 +1683,6 @@ int main(int argc, char* argv[])
         display();
     }
 
-    if (BAT_LogFile)
-    {
-        fclose(BAT_LogFile);
-    }
-
     //--------------------------------------------
     // Clear Fan test falg
     EC_RAM_WRITE(BAT1_Info[FAN1_Set_RPM].InfoAddr_L, 0);
@@ -1424,6 +1690,11 @@ int main(int argc, char* argv[])
     //EC_RAM_WRITE(0xB20,0);
     //--------------------------------------------
 
+
+    /*if (BAT_LogFile)
+    {
+        fclose(BAT_LogFile);
+    }*/
     goto end;
 
 IOError:
