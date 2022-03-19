@@ -5,9 +5,9 @@
 //*****************************************
 
 
-/* Copyright (C)Copyright 2005-2020 ZXQ Telecom. All rights reserved.
-
-   Author: Morgen Zhu
+/* 
+   Modifier: Mark Goo
+   Origional Author: Morgen Zhu
 
    Description:These functions of this file are reference only in the Windows!
    It can read/write ITE-EC RAM by
@@ -429,7 +429,6 @@ void ClearToolCursor()
 //=======================================Tool info==================================================
 #define  TOOLS_NAME  "FanView"
 #define  ITE_IC      "ITE8987"
-#define  CopyRight   "(C)Copyright 2020 Bitland Telecom."
 #define  DEBUG       0
 #define  ESC         0x1B
 #define  KEY_UP      0x48
@@ -834,8 +833,7 @@ void ToolInit(void)
     //SetConsoleTitle(TOOLS_NAME);
     system("mode con cols=95 lines=60");
 
-    printf("Fan Tool %s (For ITE %X%X)\n", TOOLS_VER, ITE_EC_Ver_1, ITE_EC_Ver_2);
-    printf("%s All rights reserved.\n", CopyRight);
+    printf("Fan Tool %s (For ITE %X%X)\n", TOOLS_VER, ITE_EC_Ver_1, ITE_EC_Ver_2); 
 
     SetTextColor(EFI_YELLOW, EFI_BLACK);
     //printf("Up/Down For Fan1 Speed Control, W/S For Fan2 Speed Control\n");
