@@ -34,14 +34,9 @@ $0_C MAX35= #5;
 需要注意的是，数值0 会恢复默认转速，所以需要风扇不转，则改为5.  
   
 另外FanViewSetting.cfg里有另外三个参数：  
-$0_X AUTOCONTROL_CYCLE= #20;  
-$0_Y SUDDENRAISE_Counter_CYCLE= #2;  
-$0_Z TEMPDIFF= #10;  
-  
-
-AUTOCONTROL_CYCLE： 多少周期来自动调整温度，FANVIEW里的进度条一个就是一个周期。  
-SUDDENRAISE_Counter_CYCLE ，结合TEMPDIFF： 如果在SUDDENRAISE_Counter_CYCLE 个周期内，温度与上一个变化周期的温度相差 达到TEMPDIFF时，立即进行风扇转速的调整。  
-  
+$0_X AUTOCONTROL_CYCLE= #40;//40个周期（4秒）自动检测下温度，如果温度区间发生变化则调整转速。  
+$0_Y SUDDENRAISE_Counter_CYCLE= #10;  
+$0_Z TEMPDIFF= #5;//持续10个周期（SUDDENRAISE_Counter_CYCLE）的快速升温或者降温5度（TEMPDIFF），则立即更改转速，避免突发性升温导致硬件损坏。  
   
 
 代码仅供学习，硬件出了问题概不负责哈。  
