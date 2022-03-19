@@ -1,0 +1,23 @@
+﻿  FMG.cpp
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(107,12): warning C4244: “return”: 从“DWORD”转换到“BYTE”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(191,12): warning C4244: “return”: 从“DWORD”转换到“BYTE”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(271,12): warning C4244: “return”: 从“DWORD”转换到“UINT8”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(292,12): warning C4244: “return”: 从“DWORD”转换到“unsigned char”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(328,12): warning C4244: “return”: 从“DWORD”转换到“BYTE”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(633,44): warning C4312: “类型强制转换”: 从“int”转换到更大的“FILE *”
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(556,10): warning C4101: “StrNum”: 未引用的局部变量
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(689,10): warning C4101: “HexNum”: 未引用的局部变量
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(690,11): warning C4101: “str”: 未引用的局部变量
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(687,10): warning C4101: “StrNum”: 未引用的局部变量
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(911,36): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(912,43): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(1003,24): warning C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(1057,89): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(1122,19): warning C4101: “temp8Bit”: 未引用的局部变量
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(1332,9): warning C4996: '_sleep': This function or variable has been superceded by newer library or operating system functionality. Consider using Sleep instead. See online help for details.
+C:\MyData\GitSpace\Thinkbook14PAutoFanController\FMG.cpp(1344,9): warning C4101: “i”: 未引用的局部变量
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 19 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Thinkbook14PAutoFanController.vcxproj -> C:\MyData\GitSpace\Thinkbook14PAutoFanController\x64\Release\Thinkbook14PAutoFanController.exe
