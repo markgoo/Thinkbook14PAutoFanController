@@ -45,3 +45,5 @@ SUDDENRAISE_Counter_CYCLE ，结合TEMPDIFF： 如果在SUDDENRAISE_Counter_CYCL
   
 
 代码仅供学习，硬件出了问题概不负责哈。  
+
+关于如何开机自启动并保持后台运行的话，建议使用AlwaysUp来托管运行该exe。
