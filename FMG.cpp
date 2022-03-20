@@ -970,7 +970,7 @@ void ToolInit(void)
 
     SetTextColor(EFI_YELLOW, EFI_BLACK);
     //printf("Up/Down For Fan1 Speed Control, W/S For Fan2 Speed Control\n");
-    printf("markgoo modified version(V10 TEST)\n");
+    printf("markgoo modified version(V11 TEST)\n");
     SetTextColor(EFI_LIGHTMAGENTA, EFI_BLACK);
     printf("<ESC> to exit!");
     SetTextColor(EFI_LIGHTGREEN, EFI_BLACK);
@@ -1365,7 +1365,7 @@ int autoControl(short iIndex, int lastTemp)
         raiseCounter = 0;
         if (currentTemp > 95)
         {
-            newSPEED = max95; 
+            newSPEED = 50; 
         }
         else if (currentTemp > 90)
         {
@@ -1487,7 +1487,7 @@ int autoControlf2(short f2iIndex, int f2lastTemp)
         f2raiseCounter = 0; 
         if (f2currentTemp > 95)
         {
-            f2newSPEED = f2max95;
+            f2newSPEED = 50;
         }
         else if (f2currentTemp > 90)
         {
