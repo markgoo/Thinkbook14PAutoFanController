@@ -968,11 +968,12 @@ void ToolInit(void)
 
     printf("Fan Tool %s (For ITE %X%X)\n", TOOLS_VER, ITE_EC_Ver_1, ITE_EC_Ver_2); 
 
-    SetTextColor(EFI_YELLOW, EFI_BLACK);
     //printf("Up/Down For Fan1 Speed Control, W/S For Fan2 Speed Control\n");
-    printf("markgoo modified version(V11 TEST)\n");
     SetTextColor(EFI_LIGHTMAGENTA, EFI_BLACK);
-    printf("<ESC> to exit!");
+    printf("markgoo modified version(V12)\n");
+    SetTextColor(EFI_YELLOW, EFI_BLACK);
+    printf("请按<ESC>键退出来重置转速配置!!!");
+    SetTextColor(EFI_LIGHTMAGENTA, EFI_BLACK);
     SetTextColor(EFI_LIGHTGREEN, EFI_BLACK);
     for (i = 0, j = 0; i < INFONAMECOUNT; i++)
     {
