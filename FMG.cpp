@@ -1332,6 +1332,13 @@ int autoControl(short iIndex, int lastTemp)
     bool doCheck = false; 
 
     int currentTemp = BAT1_Info[mgf1id].InfoInt;
+    int currentTemp2 = BAT1_Info[mgf2id].InfoInt;
+
+    if (currentTemp == 0)
+    {
+        currentTemp = currentTemp2;
+    }
+
     if (lastTemp!=0 && (currentTemp - lastTemp > SETTING_AUTOCONTROL_TEMPDIFFERENT || lastTemp - currentTemp > SETTING_AUTOCONTROL_TEMPDIFFERENT))
     {
         if (raiseCounter >= SETTING_SUDDENRAISE_Counter_CYCLE)
@@ -1453,6 +1460,15 @@ int autoControlf2(short f2iIndex, int f2lastTemp)
 {
     bool f2doCheck = false;
     int f2currentTemp = BAT1_Info[mgf2id].InfoInt;
+
+    int f1currentTemp = BAT1_Info[mgf1id].InfoInt;
+     
+
+    if (f2currentTemp == 0)
+    {
+        f2currentTemp = f1currentTemp;
+    }
+
 
     if (f2lastTemp != 0 && (f2currentTemp - f2lastTemp > f2SETTING_AUTOCONTROL_TEMPDIFFERENT || f2lastTemp - f2currentTemp > f2SETTING_AUTOCONTROL_TEMPDIFFERENT))
     {
